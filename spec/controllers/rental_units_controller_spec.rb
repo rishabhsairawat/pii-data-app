@@ -24,13 +24,14 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe RentalUnitsController, type: :controller do
+  before(:all) { User.create! }
 
   # This should return the minimal set of attributes required to create a valid
   # RentalUnit. As you add validations to RentalUnit, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    { address: "1007 Mountain Drive, Gotham", rooms: 12, bathrooms: 5, price_cents: 100000000, user_id: 1}
+  end
 
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
@@ -76,7 +77,6 @@ RSpec.describe RentalUnitsController, type: :controller do
 
     context "with invalid params" do
       it "renders a JSON response with errors for the new rental_unit" do
-
         post :create, params: {rental_unit: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
@@ -86,15 +86,13 @@ RSpec.describe RentalUnitsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { { rooms: 20 } }
 
       it "updates the requested rental_unit" do
         rental_unit = RentalUnit.create! valid_attributes
         put :update, params: {id: rental_unit.to_param, rental_unit: new_attributes}, session: valid_session
         rental_unit.reload
-        skip("Add assertions for updated state")
+        assert(rental_unit.rooms, 20)
       end
 
       it "renders a JSON response with the rental_unit" do
