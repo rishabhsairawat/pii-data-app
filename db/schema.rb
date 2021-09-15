@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210908122403) do
+ActiveRecord::Schema.define(version: 20210909135026) do
 
   create_table "rental_units", force: :cascade do |t|
     t.string "address"
@@ -25,10 +25,14 @@ ActiveRecord::Schema.define(version: 20210908122403) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
-    t.string "mobile"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "email_ciphertext"
+    t.string "email_bidx"
+    t.text "mobile_ciphertext"
+    t.string "mobile_bidx"
+    t.index ["email_bidx"], name: "index_users_on_email_bidx"
+    t.index ["mobile_bidx"], name: "index_users_on_mobile_bidx"
   end
 
 end
