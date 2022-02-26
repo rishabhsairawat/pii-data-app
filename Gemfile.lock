@@ -97,7 +97,8 @@ GEM
     parallel (1.20.1)
     parser (3.0.2.0)
       ast (~> 2.4.1)
-    puma (3.12.6)
+    puma (4.3.11)
+      nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
     rack-test (1.1.0)
@@ -197,7 +198,7 @@ DEPENDENCIES
   faker
   listen (>= 3.0.5, < 3.2)
   lockbox
-  puma (~> 3.7)
+  puma (~> 4.3)
   rails (~> 5.1.4)
   rspec-rails (~> 3.5)
   rubocop
