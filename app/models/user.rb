@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
 
   def print_user_info
-    puts get_user
+    puts get_user_info
   end
 
   def get_user_info
